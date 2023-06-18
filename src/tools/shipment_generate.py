@@ -1,6 +1,6 @@
 from datetime import datetime
-from domain.models.calendar import Calendar
-from services.cnab_processor import CnabProcessor
+from src.domain.models.calendar import Calendar
+from src.tools.cnab_processor import CnabProcessor
 
 def assemble_shipment(cnab_data):
     detail_info = cnab_data['detail_data']

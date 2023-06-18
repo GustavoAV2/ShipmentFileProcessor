@@ -1,11 +1,11 @@
 import time
 from watchdog.observers import Observer
-from services.file_event_handler import FileEventHandler
+from src.tools.file_event_handler import FileEventHandler
 
 
 event_handler = FileEventHandler()
 observer = Observer()
-observer.schedule(event_handler, "shipment_folder/", recursive=False)
+observer.schedule(event_handler, "input_shipment/", recursive=False)
 
 observer.start()
 try:

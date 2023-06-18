@@ -1,9 +1,9 @@
 from typing import List
 
-from domain.models.additional_info import AdditionalInfo
-from domain.models.billing_value import BillingValue
-from domain.models.calendar import Calendar
-from domain.models.person import Person
+from src.domain.models.additional_info import AdditionalInfo
+from src.domain.models.billing_value import BillingValue
+from src.domain.models.calendar import Calendar
+from src.domain.models.person import Person
 
 
 class Shipment:

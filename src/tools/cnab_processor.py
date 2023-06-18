@@ -2,7 +2,7 @@
 class CnabProcessor:
     def __init__(self, cnab_filename):
         self.cnab_filename = cnab_filename
-        self.root_path = '../shipment_folder/'
+        self.root_path = '../../input_shipment/'
 
     def process(self):
         cnab_data = {}
