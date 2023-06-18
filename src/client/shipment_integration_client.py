@@ -2,12 +2,12 @@ import requests
 from typing import Dict
 
 
-class PixClient:
+class ShipmentIntegration:
     def __init__(self):
-        self.url = "https://pix.example.com/"
+        self.url = "http://localhost:5000/"
         self.token = ""
-        self.client_id = "citiClientTest"
-        self.client_secret = "citiClientTest"
+        self.client_id = ""
+        self.client_secret = ""
 
     def _request_authorize_token(self):
         if self.token:

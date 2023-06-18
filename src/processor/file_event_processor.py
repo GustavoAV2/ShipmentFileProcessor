@@ -18,6 +18,6 @@ class FileEventProcessor(FileSystemEventHandler):
     def process_file(self, file_path):
         logger.info(f"Processando arquivo: {file_path}")
         try:
-            self.shipment_action.send_converted_file(file_path)
+            self.shipment_action.send_file_to_api(file_path)
         except Exception as e:
             logger.error(f"Erro ao processar o arquivo: {file_path}\n{str(e)}")
