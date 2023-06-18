@@ -1,35 +1,14 @@
-""" Header structure """
-""" Nome	Significado	Obrigatorio	Posicao	Picture	Conteudo
-TIPO DE REGISTRO	IDENTIFICAÇÃO DO REGISTRO HEADER	SIM	001 001	9(01)	0
-OPERAÇÃO	TIPO DE OPERAÇÃO - REMESSA	SIM	002 002	9(01)	1
-LITERAL DE REMESSA	IDENTIFICAÇÃO POR EXTENSO DO MOVIMENTO	SIM	003 009	X(07)	REMESSA
-CÓDIGO DO SERVIÇO	IDENTIFICAÇÃO DO TIPO DE SERVIÇO	SIM	010 011	9(02)	"02"
-LITERAL DE SERVIÇO	IDENTIFICAÇÃO POR EXTENSO DO TIPO DE SERVIÇO	SIM	012 026	X(15)	PIX
-ISPB PARTICIPANTE	PSP DO USUARIO RECEBEDOR	SIM	027 034	X(08)	Deve ser preenchido com ISPB do PSP Recebedor
-TIPO PESSOA RECEBEDOR	TIPO DE PESSOA RECEBEDOR	SIM	035 036	9(02)	NOTA 1
-CPF CNPJ	CPF CNPJ DO USUARIO RECEBEDOR	SIM	037 050	9(14)	Identificação única do usuário recebedor
-AGÊNCIA	AGÊNCIA DO USUARIO RECEBEDOR	NÃO	051 054	9(04)	Agência do usuário recebedor
-CONTA	CONTA USUÁRIO RECEBEDOR	NÃO	055 074	9(20)	Número da conta transacional usuário recebedor
-TIPO CONTA	TIPO CONTA USUÁRIO RECEBEDOR	NÃO	075 078	X(04)	NOTA 2
-CHAVE Pix	CHAVE Pix	NÃO	079 155	X(77)	NOTA 3
-DATA DE GERAÇÃO	DATA DE GERAÇÃO DO ARQUIVO	SIM	156 163	9(08)	AAAAMMDD
-CÓDIGO DO CONVENIO	CÓDIGO DO CONVENIO	NÃO	164 193	X(30)	
-EXCLUSIVO PSP RECEBEDOR	EXCLUSIVO PSP RECEBEDOR	NÃO	194 253	X(60)	Campo para uso exclusivo do PSP recebedor
-NOME DO RECEBEDOR	NOME FANTASIA/RAZÃO SOCIAL DO RECEBEDOR	NÃO	254 353	X(100)	
-BRANCOS	BRANCOS	NÃO	354 731	X(378)	
-NÚMERO SEQUENCIAL DA REMESSA	NÚMERO SEQÜENCIAL DA REMESSA DO ARQUIVO	SIM	732 741	9(10)	
-VERSAO DO ARQUIVO	VERSAO DO LAYOUT DO ARQUIVO	SIM	742 744	9(03)	002 CONTEÚDO PODE SER ALTERADO DE ACORDO COM VERSÃO DO LAYOUT
-NÚMERO SEQUENCIAL DO REGISTRO	NÚMERO SEQÜENCIAL DO REGISTRO	SIM	745 750	9(06) """	
-
-""" Details structure """
+from services import processador_cnab
 
 
-
-class CnabService:
+class GeradorRemessa:
     def __init__(self):
         self.root_path = '../shipment_folder/'
 
-    def read_cnab(self, file):
+    def obter_objeto_cnab(self, file):
+        processador = processador_cnab(file)
+        dados_cnab = processador.processar()
+        
         header_data = {}
         detail_data = {}
         with open(self.root_path + file, 'r', encoding='ascii') as file:
@@ -93,5 +72,5 @@ class CnabService:
         print(data);
 
 if __name__ == "__main__":
-    c = CnabService()
+    c = GeradorRemessa()
     c.read_cnab("remessa.cnab")
