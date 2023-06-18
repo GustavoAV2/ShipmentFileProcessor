@@ -46,7 +46,8 @@ class CnabProcessor:
         data['sequential_number'] = line[731:741].strip()
         data['version'] = line[741:744].strip()
         data['sequential_number_register'] = line[744:750].strip()
-        logger.info('Header: ' + data)
+        logger.info(f'Header: {data}')
+        print(data)
 
     @staticmethod
     def _detail_process(line, data):
@@ -71,4 +72,5 @@ class CnabProcessor:
         data['exclusivo_psp_recebedor'] = line[499:559].strip()
         data['brancos'] = line[559:744].strip()
         data['sequencial_registro'] = line[744:750].strip()
-        logger.info('Detail: ' + data)
+        logger.info(f'Detail: {data}')
+        print(data)
