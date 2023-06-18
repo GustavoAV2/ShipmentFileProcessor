@@ -1,10 +1,14 @@
 # Monitoramento de diretório de arquivos de remessa
 
-Este projeto consiste em um script Python que utiliza a biblioteca watchdog para monitorar um diretório específico em busca de novos arquivos de remessa. Quando um novo arquivo é detectado, uma tarefa assíncrona é iniciada para processá-lo. A tarefa assíncrona é responsável por transformar as solicitações de geração de QR Code em mensagens aceitas pelo formato do Open Pix e criar as respostas correspondentes no formato do arquivo de retorno CNAB 750. Após o processamento, o arquivo de retorno é salvo em um diretório de saída.
+Este projeto consiste em um script Python que utiliza a biblioteca watchdog para monitorar um diretório específico em busca de novos arquivos de remessa. Quando um novo arquivo é detectado, o arquivo é coletado e enviado para a [API De Cobrança](https://github.com/GustavoAV2/ApiShipmentIntegration) onde esse arquivo será processado. Este processador é responsavel por monitorar e encaminhar os arquivos a API, que por sua vez tem a responsabilidade de interpretar os arquivos, gerar o QRCode de cobrança e criar as respostas correspondentes no formato do arquivo de retorno CNAB 750. Após o processamento, o arquivo de retorno é salvo em um diretório de saída.
 
 ## Fluxograma
 
 Abaixo está um fluxograma que ilustra o funcionamento do projeto:
+![Fluxograma](docs/Fluxograma-Process.jpg)
+
+## Arquitetura do processor em comunicação com os outros projetos
+![Fluxograma](docs/SitiSolution-Arquitetura.jpg)
 
 ## Instalação
 
@@ -17,7 +21,7 @@ Abaixo está um fluxograma que ilustra o funcionamento do projeto:
    ```
 5. Crie um ambiente virtual (opcional, mas recomendado):
    ```
-   python3 -m venv venv
+   python -m venv venv
    ```
 6. Ative o ambiente virtual:
    - Windows:
@@ -32,19 +36,6 @@ Abaixo está um fluxograma que ilustra o funcionamento do projeto:
    ```
    pip install -r requirements.txt
    ```
-
-## Configuração
-
-Antes de executar o projeto, você precisa configurar algumas variáveis de ambiente:
-
-1. Caso ainda não tenha, crie um arquivo `.env` na raiz do projeto.
-2. Adicione as seguintes variáveis de ambiente ao arquivo `.env`:
-   ```
-   INPUT_SHIPMENT_URL=input_shipment
-   SEND_SHIPMENT_URL=send_shipment
-   ```
-   - `DIRETORIO_MONITORADO`: Diretório a ser monitorado em busca de novos arquivos.
-   - `DIRETORIO_SAIDA`: Diretório de saída onde os arquivos de retorno serão salvos.
 
 ## Execução
 
