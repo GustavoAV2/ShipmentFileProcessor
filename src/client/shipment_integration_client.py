@@ -1,5 +1,5 @@
 import requests
-from typing import Dict
+from log import logger
 
 
 class ShipmentIntegration:
@@ -19,21 +19,15 @@ class ShipmentIntegration:
         except Exception as ex:
             return {}
 
-    def request_create_billing(self, billing_data: Dict):
+    def request_post_file(self, file):
         self.token = self._request_authorize_token()
         try:
-            response = requests.post(self.url + 'cob',
+            url = self.url + "process_shipment_file"
+            logger.info("Requisitando: " + url)
+            response = requests.post(url,
                                      headers={"Authorization": f"Bearer {self.token}"},
-                                     data=billing_data)
-            return response.json()
+                                     files=file)
+            return response
         except Exception as ex:
             return {}
 
-    def request_search_billing(self, shipping_data: Dict):
-        self.token = self._request_authorize_token()
-        try:
-            response = requests.get(self.url + 'cob/' + shipping_data.get('taxId'),
-                                    headers={"Authorization": f"Bearer {self.token}"})
-            return response.json()
-        except Exception as ex:
-            return {}

@@ -1,11 +1,11 @@
 from log import logger
 from watchdog.events import FileSystemEventHandler
-from src.actions.shipment_actions import ShipmentActions
+from src.actions.shipment_integration_actions import ShipmentIntegrationActions
 
 
 class FileEventProcessor(FileSystemEventHandler):
     def __init__(self):
-        self.shipment_action = ShipmentActions()
+        self.shipment_action = ShipmentIntegrationActions()
 
     def on_created(self, event):
         # Ação a ser executada quando um novo arquivo for criado
@@ -18,6 +18,6 @@ class FileEventProcessor(FileSystemEventHandler):
     def process_file(self, file_path):
         logger.info(f"Processando arquivo: {file_path}")
         try:
-            self.shipment_action.send_file_to_api(file_path)
+            self.shipment_action.integrate_file(file_path)
         except Exception as e:
             logger.error(f"Erro ao processar o arquivo: {file_path}\n{str(e)}")
