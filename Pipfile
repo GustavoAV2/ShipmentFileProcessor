@@ -7,9 +7,11 @@ name = "pypi"
 watchdog = "*"
 pymongo = "*"
 requests = "*"
+crcmod = "*"
+qrcode = "*"
+pixqrcodegen = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.11"
-python_full_version = "3.11.1"
