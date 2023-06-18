@@ -42,12 +42,12 @@ def assemble_shipment(cnab_data):
     return shipment
 
 
-class ShipmentGenerate:
+class ShipmentGenerator:
     def __init__(self):
         pass
 
     @staticmethod
-    def shipment_generate(file):
+    def generate_shipment(file):
         processor = CnabProcessor(file)
         cnab_data = processor.process()
         shipment = assemble_shipment(cnab_data)
@@ -55,5 +55,5 @@ class ShipmentGenerate:
 
 
 if __name__ == "__main__":
-    c = ShipmentGenerate()
-    c.shipment_generate("remessa.cnab")
+    c = ShipmentGenerator()
+    c.generate_shipment("remessa.cnab")

@@ -1,2 +1,5 @@
 setuptools-git==1.1
 watchdog==3.0.0
+
+crcmod~=1.7
+qrcode~=7.4.2
