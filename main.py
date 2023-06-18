@@ -1,15 +1,16 @@
 import time
 from watchdog.observers import Observer
-from src.tools.file_event_handler import FileEventHandler
+from src.processor.file_event_processor import FileEventProcessor
 
 
-event_handler = FileEventHandler()
-observer = Observer()
-observer.schedule(event_handler, "input_shipment/", recursive=False)
+if __name__ == "__main__":
+    event_handler = FileEventProcessor()
+    observer = Observer()
+    observer.schedule(event_handler, "input_shipment/", recursive=False)
 
-observer.start()
-try:
-    while True:
-        time.sleep(1)
-except KeyboardInterrupt:
-    observer.stop()
+    observer.start()
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()

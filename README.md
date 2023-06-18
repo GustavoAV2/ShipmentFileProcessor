@@ -40,8 +40,8 @@ Antes de executar o projeto, você precisa configurar algumas variáveis de ambi
 1. Caso ainda não tenha, crie um arquivo `.env` na raiz do projeto.
 2. Adicione as seguintes variáveis de ambiente ao arquivo `.env`:
    ```
-   DIRETORIO_MONITORADO=/shipment_folder
-   DIRETORIO_SAIDA=<diretorio_saida>
+   INPUT_SHIPMENT_URL=input_shipment
+   SEND_SHIPMENT_URL=send_shipment
    ```
    - `DIRETORIO_MONITORADO`: Diretório a ser monitorado em busca de novos arquivos.
    - `DIRETORIO_SAIDA`: Diretório de saída onde os arquivos de retorno serão salvos.
