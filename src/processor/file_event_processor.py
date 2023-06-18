@@ -1,10 +1,11 @@
-from log import logger
+from src.log import logger
 from watchdog.events import FileSystemEventHandler
 from src.actions.shipment_integration_actions import ShipmentIntegrationActions
 
 
 class FileEventProcessor(FileSystemEventHandler):
     def __init__(self):
+        logger.info("Monitoramento iniciado...")
         self.shipment_action = ShipmentIntegrationActions()
 
     def on_created(self, event):

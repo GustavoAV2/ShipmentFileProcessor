@@ -1,5 +1,5 @@
 import requests
-from log import logger
+from src.log import logger
 
 
 class ShipmentIntegration:

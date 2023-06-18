@@ -5,11 +5,7 @@ name = "pypi"
 
 [packages]
 watchdog = "*"
-pymongo = "*"
 requests = "*"
-crcmod = "*"
-qrcode = "*"
-pixqrcodegen = "*"
 
 [dev-packages]
 
